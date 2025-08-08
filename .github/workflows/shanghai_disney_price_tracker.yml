@@ -38,7 +38,7 @@ jobs:
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
-          PEOPLE_SUMMARY: "2 adults + child (22 months; likely free—confirm policy)"
+          PEOPLE_SUMMARY: "2 adults"
           HISTORY_PATH: "data/history.json"
         run: |
           python price_tracker/main.py

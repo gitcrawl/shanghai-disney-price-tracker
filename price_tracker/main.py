@@ -45,7 +45,7 @@ async def fetch_min_price(page, url: str) -> float | None:
             for m in PRICE_RE.finditer(t):
                 try:
                     val = float(m.group(1).replace(",", ""))
-                    if val > 10:  # filter tiny junk like "1"
+                    if val > 40:  # filter tiny junk like "1"
                         prices.append(val)
                 except:
                     pass
@@ -56,7 +56,7 @@ async def fetch_min_price(page, url: str) -> float | None:
             for m in PRICE_RE.finditer(html):
                 try:
                     val = float(m.group(1).replace(",", ""))
-                    if val > 10:
+                    if val > 40:
                         prices.append(val)
                 except:
                     pass

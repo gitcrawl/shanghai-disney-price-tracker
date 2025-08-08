@@ -1,5 +1,5 @@
 {
-  "updated_at": "2025-08-08T12:34:47.603737+00:00",
+  "updated_at": "2025-08-08T13:01:40.979064+00:00",
   "latest": [
     {
       "vendor": "KLOOK",
@@ -11,7 +11,7 @@
       "vendor": "TRIPCOM",
       "date": "2025-09-01",
       "url": "https://au.trip.com/?locale=en-au",
-      "minPrice": 12.0
+      "minPrice": 45.0
     },
     {
       "vendor": "KLOOK",
@@ -23,7 +23,7 @@
       "vendor": "TRIPCOM",
       "date": "2025-09-02",
       "url": "https://au.trip.com/?locale=en-au",
-      "minPrice": 12.0
+      "minPrice": 45.0
     }
   ],
   "best": {

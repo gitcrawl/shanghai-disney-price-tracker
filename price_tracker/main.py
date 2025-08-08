@@ -28,23 +28,44 @@ HISTORY_PATH = Path(os.getenv("HISTORY_PATH", "data/history.json"))
 
 USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36"
 
-# Regex for numeric prices
-PRICE_RE = re.compile(r"(?:A\$|AU\$|\$|¥|CNY)?\s?([0-9]{1,3}(?:,[0-9]{3})*|[0-9]+)")
+# Regex for proper currency amounts (requires symbol, avoids lone "1")
+PRICE_RE = re.compile(r"(?:A\$|AU\$|\$|¥|CNY)\s*([1-9]\d(?:,\d{3})*|\d{3,})(?:\.\d{1,2})?")
 
 async def fetch_min_price(page, url: str) -> float | None:
     try:
         await page.goto(url, wait_until="networkidle", timeout=45000)
-        await page.wait_for_timeout(1500)  # settle time
-        html = await page.content()
+        await page.wait_for_timeout(2000)  # give JS a moment to render
+
         prices = []
-        for m in PRICE_RE.finditer(html):
-            try:
-                val = float(m.group(1).replace(",", ""))
-                if val > 0:  # ignore zero prices
-                    prices.append(val)
-            except:
-                pass
+
+        # --- Pass 1: scrape visible text nodes likely containing prices
+        # Grab lots of candidate texts (buttons, spans, divs)
+        candidate_texts = await page.locator("text=/¥|AU\\$|A\\$|\\$/").all_text_contents()
+        for t in candidate_texts:
+            for m in PRICE_RE.finditer(t):
+                try:
+                    val = float(m.group(1).replace(",", ""))
+                    if val > 10:  # filter tiny junk like "1"
+                        prices.append(val)
+                except:
+                    pass
+
+        # --- Pass 2: regex over full HTML as fallback
+        if not prices:
+            html = await page.content()
+            for m in PRICE_RE.finditer(html):
+                try:
+                    val = float(m.group(1).replace(",", ""))
+                    if val > 10:
+                        prices.append(val)
+                except:
+                    pass
+
+        # Heuristic guardrails: ticket prices won't be ridiculous.
+        prices = [p for p in prices if 10 < p < 5000]
+
         return min(prices) if prices else None
+
     except Exception as e:
         print(f"[WARN] Failed to fetch {url}: {e}")
         return None

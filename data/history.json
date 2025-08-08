@@ -1,0 +1,35 @@
+{
+  "updated_at": "2025-08-08T12:24:00.109094+00:00",
+  "latest": [
+    {
+      "vendor": "KLOOK",
+      "date": "2025-09-01",
+      "url": "https://www.klook.com/activity/2128-disney-resort-shang-hai/?spm=SearchResult.SearchResult_LIST&clickId=c67a684fba\n",
+      "minPrice": 1.0
+    },
+    {
+      "vendor": "TRIPCOM",
+      "date": "2025-09-01",
+      "url": "https://au.trip.com/?locale=en-au",
+      "minPrice": 1.0
+    },
+    {
+      "vendor": "KLOOK",
+      "date": "2025-09-02",
+      "url": "https://www.klook.com/activity/2128-disney-resort-shang-hai/?spm=SearchResult.SearchResult_LIST&clickId=c67a684fba\n",
+      "minPrice": 1.0
+    },
+    {
+      "vendor": "TRIPCOM",
+      "date": "2025-09-02",
+      "url": "https://au.trip.com/?locale=en-au",
+      "minPrice": 1.0
+    }
+  ],
+  "best": {
+    "price": 1.0,
+    "vendor": "KLOOK",
+    "date": "2025-09-01",
+    "url": "https://www.klook.com/activity/2128-disney-resort-shang-hai/?spm=SearchResult.SearchResult_LIST&clickId=c67a684fba\n"
+  }
+}

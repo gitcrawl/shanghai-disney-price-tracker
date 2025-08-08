@@ -23,7 +23,6 @@ SMTP_USER = os.getenv("SMTP_USER", "")
 SMTP_PASS = os.getenv("SMTP_PASS", "")
 SMTP_SECURE = os.getenv("SMTP_SECURE", "TLS").upper()  # TLS | SSL | NONE
 EMAIL_ENABLED = os.getenv("EMAIL_ENABLED", "true").lower() in ("1", "true", "yes")
-PEOPLE_SUMMARY = os.getenv("PEOPLE_SUMMARY", "2 adults")
 HISTORY_PATH = Path(os.getenv("HISTORY_PATH", "data/history.json"))
 
 USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36"
